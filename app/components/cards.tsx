@@ -1,37 +1,51 @@
-"use client";
-export default function CardWrapper() {
+import Image from "next/image";
+
+export default function CardWrapper({
+  data,
+  title,
+}: {
+  data: CardData[];
+  title: string;
+}) {
   return (
     <>
-      <div className="grid grid-cols-3 gap-x-2.5">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+      <h3 className="text-lg font-semibold">Most Popular {title}</h3>
+      <div className="overflow-x-auto p-4 flex space-x-2">
+        <Card data={data} />
       </div>
     </>
   );
 }
 
-function Card() {
+function Card({ data }: { data: CardData[] }) {
   return (
     <>
-      <div className="card bg-base-100 w-96 shadow-xl">
-        <figure>
-          <img
-            src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-            alt="Shoes"
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
-          </div>
+      {data.map((d) => (
+        <div className="relative w-40 shadow-xl mx-2 border border-gray-700">
+          <a href={d.url} className="block relative">
+            <div className="relative w-40 h-[220px]">
+              <Image
+                src={d.images.webp.image_url}
+                alt="gambar"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover"
+                priority
+              />
+            </div>
+
+            <div
+              className="absolute bottom-0 left-0 right-0 bg-opacity-30 p-2"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.05))",
+              }}
+            >
+              <p className="text-white text-[11px] leading-tight">{d.title}</p>
+            </div>
+          </a>
         </div>
-      </div>
+      ))}
     </>
   );
 }

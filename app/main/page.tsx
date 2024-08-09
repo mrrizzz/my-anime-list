@@ -1,18 +1,19 @@
 import CardWrapper from "../components/cards";
-import Carousel from "../components/carousel";
+import { fetchPopularData } from "../lib/data";
 
-export default function Page() {
+export default async function Page() {
+  const cardDisplayList = ["Anime", "Manga"];
+
+  const [animeHeader, mangaHeader] = cardDisplayList;
+  const { topAnime, topManga } = await fetchPopularData();
+
   return (
     <>
-      <div className="flex flex-col mx-auto max-w-screen-xl py-4 ">
-        <div className="flex">
-          <Carousel />
+      <div className="flex flex-col mx-auto max-w-screen-xl py-4">
+        <div>
+          <CardWrapper data={topAnime} title={animeHeader} />
+          <CardWrapper data={topManga} title={mangaHeader} />
         </div>
-        <CardWrapper />
-        {/* <CardWrapper /> */}
-        {/* <CardWrapper /> */}
-        {/* <CardWrapper /> */}
-        {/* <CardWrapper /> */}
       </div>
     </>
   );
