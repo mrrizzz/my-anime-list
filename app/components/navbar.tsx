@@ -4,7 +4,7 @@ import { AuthLinks, NavList } from "./nav-links";
 
 export default function Navbar() {
   return (
-    <>
+    <header>
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
           <Logo />
@@ -21,11 +21,11 @@ export default function Navbar() {
               <NavList />
             </div>
             <div>
-              <Search />
+              <Search placeholder="Search here..." />
             </div>
           </div>
         </div>
       </nav>
-    </>
+    </header>
   );
 }

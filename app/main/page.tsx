@@ -9,7 +9,7 @@ export default async function Page() {
 
   return (
     <>
-      <div className="flex flex-col mx-auto max-w-screen-xl py-4">
+      <div className="flex flex-col space-y-10">
         <div>
           <CardWrapper data={topAnime} title={animeHeader} />
           <CardWrapper data={topManga} title={mangaHeader} />

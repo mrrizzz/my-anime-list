@@ -4,24 +4,27 @@ export default function CardWrapper({
   data,
   title,
 }: {
-  data: CardData[];
+  data: MediaItem[];
   title: string;
 }) {
   return (
     <>
       <h3 className="text-lg font-semibold">Most Popular {title}</h3>
-      <div className="overflow-x-auto p-4 flex space-x-2">
+      <div className="overflow-x-auto py-4 flex space-x-2">
         <Card data={data} />
       </div>
     </>
   );
 }
 
-function Card({ data }: { data: CardData[] }) {
+function Card({ data }: { data: MediaItem[] }) {
   return (
     <>
       {data.map((d) => (
-        <div className="relative w-40 shadow-xl mx-2 border border-gray-700">
+        <div
+          key={d.mal_id}
+          className="relative w-40 shadow-xl mx-2 border border-gray-700"
+        >
           <a href={d.url} className="block relative">
             <div className="relative w-40 h-[220px]">
               <Image

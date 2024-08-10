@@ -43,7 +43,7 @@ interface Broadcast {
   string: string;
 }
 
-interface Producer {
+interface ListDetail {
   mal_id: number;
   type: string;
   name: string;
@@ -62,7 +62,7 @@ interface Pagination {
   items: PaginationItems;
 }
 
-interface CardData {
+interface AnimeItem {
   mal_id: number;
   url: string;
   images: Images;
@@ -92,16 +92,72 @@ interface CardData {
   season: string;
   year: number;
   broadcast: Broadcast;
-  producers: Producer[];
-  licensors: Producer[];
-  studios: Producer[];
-  genres: Producer[];
-  explicit_genres: Producer[];
-  themes: Producer[];
-  demographics: Producer[];
+  producers: ListDetail[];
+  licensors: ListDetail[];
+  studios: ListDetail[];
+  genres: ListDetail[];
+  explicit_genres: ListDetail[];
+  themes: ListDetail[];
+  demographics: ListDetail[];
 }
 
-interface ApiResponse {
-  data: CardData[];
+interface AnimeApiResponse {
+  data: AnimeItem[];
   pagination: Pagination;
 }
+
+//FOR MANGA INTERFACE
+interface MangaItem {
+  mal_id: number;
+  url: string;
+  images: Images; // Menggunakan interface Images yang sudah ada
+  approved: boolean;
+  titles: Title[]; // Menggunakan interface Title yang sudah ada
+  title: string;
+  title_english: string;
+  title_japanese: string;
+  type: string;
+  chapters: number;
+  volumes: number;
+  status: string;
+  publishing: boolean;
+  published: Aired; // Menggunakan interface Aired yang sudah ada
+  score: number;
+  scored_by: number;
+  rank: number;
+  popularity: number;
+  members: number;
+  favorites: number;
+  synopsis: string;
+  background: string;
+  authors: ListDetail[]; // Menggunakan interface ListDetail yang sudah ada
+  serializations: ListDetail[]; // Menggunakan interface ListDetail yang sudah ada
+  genres: ListDetail[]; // Menggunakan interface ListDetail yang sudah ada
+  explicit_genres: ListDetail[]; // Menggunakan interface ListDetail yang sudah ada
+  themes: ListDetail[]; // Menggunakan interface ListDetail yang sudah ada
+  demographics: ListDetail[]; // Menggunakan interface ListDetail yang sudah ada
+}
+
+interface MangaApiResponse {
+  data: MangaItem[];
+  pagination: Pagination; // Menggunakan interface Pagination yang sudah ada
+}
+
+//FOR CHARACTER
+interface CharacterItem {
+  mal_id: number;
+  url: string;
+  images: Images; // Menggunakan interface Images yang sudah ada
+  name: string;
+  name_kanji: string;
+  nicknames: string[];
+  favorites: number;
+  about: string;
+}
+
+interface CharacterApiResponse {
+  data: CharacterItem[];
+  pagination: Pagination; // Menggunakan interface Pagination yang sudah ada
+}
+
+type MediaItem = AnimeItem & MangaItem & CharacterItem;

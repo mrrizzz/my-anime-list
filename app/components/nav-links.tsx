@@ -42,7 +42,6 @@ export function NavList() {
   ];
 
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <>
